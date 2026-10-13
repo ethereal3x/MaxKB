@@ -56,14 +56,15 @@ class BaseResetProblemStep(IResetProblemStep):
         return padding_problem
 
     def get_details(self, manage, **kwargs):
+        step_args = self.context.get("step_args") or {}
         return {'status': self.status,
                 'err_message': self.err_message,
                 'step_type': 'problem_padding',
-                'run_time': self.context['run_time'],
+                'run_time': self.context.get('run_time', 0),
                 'model_id': str(manage.context['model_id']) if 'model_id' in manage.context else None,
                 'message_tokens': self.context.get('message_tokens', 0),
                 'answer_tokens': self.context.get('answer_tokens', 0),
                 'cost': 0,
                 'padding_problem_text': self.context.get('padding_problem_text'),
-                'problem_text': self.context.get("step_args").get('problem_text'),
+                'problem_text': step_args.get('problem_text'),
                 }
