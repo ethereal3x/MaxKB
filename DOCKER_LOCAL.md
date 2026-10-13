@@ -49,7 +49,7 @@ docker run -d --name maxkb \
 如果需要在本地直接修改代码并热调试，可以将本仓库的 `apps/` 目录直接挂载进容器：
 
 ```bash
--v /Users/ethereal3x/Documents/MaxKB/apps:/opt/maxkb-app/apps
+-v /Users/ethereal3x/project/python/MaxKB/apps:/opt/maxkb-app/apps
 ```
 
 只要保存代码，Gunicorn / Celery 即加载最新代码。
