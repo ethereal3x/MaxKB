@@ -1,0 +1,14 @@
+# MaxKB 本地极速构建 Dockerfile
+# 基于官方 v2 镜像，并打入本仓库已修复的 chat_pipeline 与其他补丁
+FROM 1panel/maxkb:v2
+
+# 复制修复后的业务代码覆盖到容器内部
+COPY apps/application/chat_pipeline/step/reset_problem_step/impl/base_reset_problem_step.py \
+     /opt/maxkb-app/apps/application/chat_pipeline/step/reset_problem_step/impl/base_reset_problem_step.py
+
+COPY apps/application/chat_pipeline/step/generate_human_message_step/impl/base_generate_human_message_step.py \
+     /opt/maxkb-app/apps/application/chat_pipeline/step/generate_human_message_step/impl/base_generate_human_message_step.py
+
+LABEL maintainer="ethereal3x" \
+      version="v2-patched" \
+      description="MaxKB with chat_pipeline bugfixes"
